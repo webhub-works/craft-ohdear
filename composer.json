@@ -29,7 +29,7 @@
         "nesbot/carbon": "^2.35.0",
         "spatie/url": "^2.0",
         "spatie/regex": "^3.0.0",
-        "symfony/process": "^5.4|^6.0"
+        "symfony/process": "^5.4|^6.0|^7.0"
     },
     "require-dev": {
         "craftcms/cms": "^3.6.0",
