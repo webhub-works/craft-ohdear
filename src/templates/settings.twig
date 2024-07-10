@@ -74,6 +74,15 @@
 
 <h2>{{ 'Other'|t('ohdear') }}</h2>
 
+{{ forms.textField({
+    label: "Plugin name"|t("ohdear"),
+    id: "pluginName",
+    instructions: "The public-facing name of the plugin"|t("ohdear"),
+    value: settings['pluginName'],
+    name: "pluginName",
+    errors: settings.getErrors("pluginName"),
+}) }}
+
 <p>{{ 'Show counter badges on the navigation items for broken links and mixed content items.'|t('ohdear') }}</p>
 
 {{ forms.checkbox({

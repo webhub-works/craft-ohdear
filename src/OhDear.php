@@ -71,6 +71,8 @@ class OhDear extends Plugin
 
     public bool $isPreCraft34 = false;
 
+    public static ?Settings $settings = null;
+
     public function init(): void
     {
         // Set the controllerNamespace based on whether this is a console request
@@ -82,6 +84,7 @@ class OhDear extends Plugin
 
         parent::init();
         self::$plugin = $this;
+        $this->name = self::$plugin->getSettings()->pluginName;
 
         $this->setComponents([
             'settingsService' => SettingsService::class,

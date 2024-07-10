@@ -30,6 +30,8 @@ class Settings extends Model
     // Public Properties
     // =========================================================================
 
+    public string $pluginName = 'Oh Dear';
+
     public string $apiToken = '';
 
     public string $selectedSiteId = '';
@@ -90,6 +92,8 @@ class Settings extends Model
     public function rules(): array
     {
         return [
+            ['pluginName', 'string'],
+            ['pluginName', 'default', 'value' => 'Oh Dear'],
             [['showNavBadges'], 'boolean'],
             [['apiToken', 'selectedSiteId'], 'trim'],
             [['apiToken', 'selectedSiteId'], 'default', 'value' => ''],
@@ -120,7 +124,7 @@ class Settings extends Model
 
         try {
             OhDear::$plugin->settingsService->getSite(
-                App::parseEnv($this->apiToken), 
+                App::parseEnv($this->apiToken),
                 (int) App::parseEnv($this[$attribute])
             );
         } catch (UnauthorizedException $e) {
