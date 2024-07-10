@@ -16,6 +16,7 @@ use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 use webhubworks\ohdear\assetbundles\ohdear\OhDearAsset;
+use webhubworks\ohdear\OhDear;
 use yii\base\Exception;
 
 /**
@@ -39,7 +40,7 @@ class OhDearWidget extends Widget
      */
     public static function displayName(): string
     {
-        return 'Oh Dear';
+        return OhDear::$plugin->getSettings()->pluginName;
     }
 
     /**

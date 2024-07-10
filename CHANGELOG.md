@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ### Added
 - The plugin name can now be customised in the settings.
-- 
+
 ### Fixed
 - Adjusted cert health check to work with the a change in the Oh Dear API
 
