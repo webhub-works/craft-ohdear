@@ -59,13 +59,13 @@ class AvailableUpdatesCheck extends Check
 
     private function excludePluginsFromTotalUpdatesCount(Updates $updates, int &$totalUpdates): void
     {
-        if (count($this->pluginsToExclude) > 0) {
-            if (!empty($updates->plugins)) {
-                foreach ($updates->plugins as $pluginHandle => $pluginUpdateInfo) {
-                    if ($pluginUpdateInfo->getHasReleases() && in_array($pluginHandle, $this->pluginsToExclude)) {
-                        $totalUpdates--;
-                    }
-                }
+        if (empty($this->pluginsToExclude) || empty($updates->plugins)) {
+            return;
+        }
+
+        foreach ($updates->plugins as $pluginHandle => $pluginUpdateInfo) {
+            if ($pluginUpdateInfo->getHasReleases() && in_array($pluginHandle, $this->pluginsToExclude)) {
+                $totalUpdates--;
             }
         }
     }
