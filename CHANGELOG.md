@@ -4,18 +4,23 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.5.0 - 2024-07-10
+
+### Added
+- The plugin name can now be customised in the settings.
+- 
+### Fixed
+- Adjusted cert health check to work with the a change in the Oh Dear API
+
 ## 4.4.0 - 2024-07-10
 
 ### Added
-Individual plugins can now be ignored by its handle in the health check for available updates.
-
-### Fixed
-Bug where calling the health check endpoint unauthenticated failed due to not resolving an ENV variable.
+- Individual plugins can now be ignored by its handle in the health check for available updates.
 
 ## 4.3.4 - 2024-03-26
 
 ### Fixed
-Bug where calling the health check endpoint unauthenticated failed due to not resolving an ENV variable.
+- Bug where calling the health check endpoint unauthenticated failed due to not resolving an ENV variable.
 
 ## 4.3.3 - 2024-03-25
 
