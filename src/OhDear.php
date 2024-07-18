@@ -174,7 +174,7 @@ class OhDear extends Plugin
     {
         Event::on(
             Utilities::class,
-            Utilities::EVENT_REGISTER_UTILITY_TYPES,
+            Utilities::EVENT_REGISTER_UTILITIES,
             function (RegisterComponentTypesEvent $event) {
                 /** @var User|null $currentUser */
                 $currentUser = Craft::$app->getUser()->getIdentity();
