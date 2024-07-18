@@ -28,6 +28,9 @@ use craft\web\View;
 use Spatie\Url\Url;
 use webhubworks\ohdear\assetbundles\ohdear\OhDearAsset;
 use webhubworks\ohdear\models\Settings;
+use webhubworks\ohdear\plugin\CpNavItem;
+use webhubworks\ohdear\plugin\CpRoutes;
+use webhubworks\ohdear\plugin\Permissions;
 use webhubworks\ohdear\services\BadgeCountService;
 use webhubworks\ohdear\services\HealthCheckService;
 use webhubworks\ohdear\services\OhDearService;
@@ -131,86 +134,7 @@ class OhDear extends Plugin
             UserPermissions::class,
             UserPermissions::EVENT_REGISTER_PERMISSIONS,
             function (RegisterUserPermissionsEvent $event) {
-                $event->permissions['Oh Dear'] = [
-                    'heading' => 'Oh Dear',
-                    'permissions' => [
-                        'ohdear:plugin-settings' => [
-                            'label' => Craft::t('ohdear', 'Manage plugin settings'),
-                        ],
-                        'ohdear:view-overview' => [
-                            'label' => Craft::t('ohdear', 'View overview page'),
-                        ],
-                        'ohdear:view-uptime' => [
-                            'label' => Craft::t('ohdear', 'View uptime'),
-                            'nested' => [
-                                'ohdear:toggle-uptime-check' => [
-                                    'label' => Craft::t('ohdear', 'Toggle uptime check'),
-                                ],
-                                'ohdear:request-uptime-check' => [
-                                    'label' => Craft::t('ohdear', 'Request uptime check'),
-                                ],
-                            ],
-                        ],
-                        'ohdear:view-broken-links' => [
-                            'label' => Craft::t('ohdear', 'View broken links'),
-                            'nested' => [
-                                'ohdear:toggle-broken-links-check' => [
-                                    'label' => Craft::t('ohdear', 'Toggle broken links check'),
-                                ],
-                                'ohdear:request-broken-links-check' => [
-                                    'label' => Craft::t('ohdear', 'Request broken links check'),
-                                ],
-                            ],
-                        ],
-                        'ohdear:view-mixed-content' => [
-                            'label' => Craft::t('ohdear', 'View mixed content'),
-                            'nested' => [
-                                'ohdear:toggle-mixed-content-check' => [
-                                    'label' => Craft::t('ohdear', 'Toggle mixed content check'),
-                                ],
-                                'ohdear:request-mixed-content-check' => [
-                                    'label' => Craft::t('ohdear', 'Request mixed content check'),
-                                ],
-                            ],
-                        ],
-                        'ohdear:view-certificate-health' => [
-                            'label' => Craft::t('ohdear', 'View certificate health'),
-                            'nested' => [
-                                'ohdear:toggle-certificate-health-check' => [
-                                    'label' => Craft::t('ohdear', 'Toggle certificate health check'),
-                                ],
-                                'ohdear:request-certificate-health-check' => [
-                                    'label' => Craft::t('ohdear', 'Request certificate health check'),
-                                ],
-                            ],
-                        ],
-                        'ohdear:view-application-health' => [
-                            'label' => Craft::t('ohdear', 'View application health'),
-                            'nested' => [
-                                'ohdear:toggle-application-health-check' => [
-                                    'label' => Craft::t('ohdear', 'Toggle application health check'),
-                                ],
-                                'ohdear:request-application-health-check' => [
-                                    'label' => Craft::t('ohdear', 'Request application health check'),
-                                ],
-                            ],
-                        ],
-                        'ohdear:view-performance' => [
-                            'label' => Craft::t('ohdear', 'View performance'),
-                            'nested' => [
-                                'ohdear:toggle-performance-check' => [
-                                    'label' => Craft::t('ohdear', 'Toggle performance check'),
-                                ],
-                                'ohdear:request-performance-check' => [
-                                    'label' => Craft::t('ohdear', 'Request performance check'),
-                                ],
-                            ],
-                        ],
-                        'ohdear:view-utility' => [
-                            'label' => Craft::t('ohdear', 'View application health utility'),
-                        ]
-                    ],
-                ];
+                Permissions::handle($event);
             }
         );
     }
@@ -230,85 +154,7 @@ class OhDear extends Plugin
     {
         $cpNavItem = parent::getCpNavItem();
 
-        if ($this->settings->showNavBadges) {
-            $cpNavItem['badgeCount'] = $this->badgeCount->getTotalCount();
-        }
-
-        /** @var User|null $currentUser */
-        $currentUser = Craft::$app->getUser()->getIdentity();
-
-        if ($currentUser === null) {
-            return $cpNavItem;
-        }
-
-        if (! $currentUser->can('ohdear:view-overview')) {
-            return null;
-        }
-
-        if (! $this->settings->isValid()) {
-            return $cpNavItem;
-        }
-
-        if (! $currentUser->can('accessPlugin-ohdear')) {
-            return $cpNavItem;
-        }
-
-        if ($currentUser->can('ohdear:view-overview')) {
-            $cpNavItem['subnav']['overview'] = [
-                'url' => 'ohdear/overview',
-                'label' => Craft::t('ohdear', 'Overview'),
-            ];
-        }
-
-        if ($currentUser->can('ohdear:view-uptime')) {
-            $cpNavItem['subnav']['uptime'] = [
-                'url' => 'ohdear/uptime',
-                'label' => Craft::t('ohdear', 'Uptime'),
-            ];
-        }
-
-        if ($currentUser->can('ohdear:view-broken-links')) {
-            $cpNavItem['subnav']['broken-links'] = [
-                'url' => 'ohdear/broken-links',
-                'label' => Craft::t('ohdear', 'Broken Links'),
-            ];
-            if ($this->settings->showNavBadges) {
-                $cpNavItem['subnav']['broken-links']['badgeCount'] = $this->badgeCount->getBrokenLinksCount();
-            }
-        }
-
-        if ($currentUser->can('ohdear:view-mixed-content')) {
-            $cpNavItem['subnav']['mixed-content'] = [
-                'url' => 'ohdear/mixed-content',
-                'label' => Craft::t('ohdear', 'Mixed Content'),
-            ];
-            if ($this->settings->showNavBadges) {
-                $cpNavItem['subnav']['mixed-content']['badgeCount'] = $this->badgeCount->getMixedContentCount();
-            }
-        }
-
-        if ($currentUser->can('ohdear:view-certificate-health')) {
-            $cpNavItem['subnav']['certificate-health'] = [
-                'url' => 'ohdear/certificate-health',
-                'label' => Craft::t('ohdear', 'Certificate Health'),
-            ];
-        }
-
-        if ($currentUser->can('ohdear:view-application-health')) {
-            $cpNavItem['subnav']['application-health'] = [
-                'url' => 'ohdear/application-health',
-                'label' => Craft::t('ohdear', 'Application Health'),
-            ];
-        }
-
-        if ($currentUser->can('ohdear:view-performance')) {
-            $cpNavItem['subnav']['performance'] = [
-                'url' => 'ohdear/performance',
-                'label' => Craft::t('ohdear', 'Performance'),
-            ];
-        }
-
-        return $cpNavItem;
+        return CpNavItem::get($cpNavItem, $this->settings, $this->badgeCount);
     }
 
     private function registerWidgets(): void
@@ -346,35 +192,7 @@ class OhDear extends Plugin
             UrlManager::class,
             UrlManager::EVENT_REGISTER_CP_URL_RULES,
             function (RegisterUrlRulesEvent $event) {
-                /** @var User|null $currentUser */
-                $currentUser = Craft::$app->getUser()->getIdentity();
-
-                if (is_null($currentUser)) {
-                    return;
-                }
-
-                if ($currentUser->can('ohdear:view-overview')) {
-                    $event->rules['ohdear'] = ['template' => 'ohdear/overview'];
-                    $event->rules['ohdear/overview'] = ['template' => 'ohdear/overview'];
-                }
-                if ($currentUser->can('ohdear:view-uptime')) {
-                    $event->rules['ohdear/uptime'] = ['template' => 'ohdear/uptime'];
-                }
-                if ($currentUser->can('ohdear:view-broken-links')) {
-                    $event->rules['ohdear/broken-links'] = ['template' => 'ohdear/broken-links'];
-                }
-                if ($currentUser->can('ohdear:view-mixed-content')) {
-                    $event->rules['ohdear/mixed-content'] = ['template' => 'ohdear/mixed-content'];
-                }
-                if ($currentUser->can('ohdear:view-certificate-health')) {
-                    $event->rules['ohdear/certificate-health'] = ['template' => 'ohdear/certificate-health'];
-                }
-                if ($currentUser->can('ohdear:view-application-health')) {
-                    $event->rules['ohdear/application-health'] = ['template' => 'ohdear/application-health'];
-                }
-                if ($currentUser->can('ohdear:view-performance')) {
-                    $event->rules['ohdear/performance'] = ['template' => 'ohdear/performance'];
-                }
+                CpRoutes::handle($event);
             }
         );
     }
