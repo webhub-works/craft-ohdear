@@ -1,5 +1,5 @@
 includes:
-    - vendor/craftcms/phpstan/phpstan.neon
+    - /vendor/craftcms/phpstan/phpstan.neon # "/vendor" is a Docker volume mounted into DDEV to enable cross-vendor-package visibility
 
 parameters:
     level: 0
