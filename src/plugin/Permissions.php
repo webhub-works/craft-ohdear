@@ -61,17 +61,17 @@ class Permissions
                         ],
                     ],
                 ],
-                'ohdear:view-lighthouse' => [
-                    'label' => \Craft::t('ohdear', 'View Lighthouse'),
-                    'nested' => [
-                        'ohdear:toggle-lighthouse-check' => [
-                            'label' => \Craft::t('ohdear', 'Toggle lighthouse check'),
-                        ],
-                        'ohdear:request-lighthouse-check' => [
-                            'label' => \Craft::t('ohdear', 'Request lighthouse check'),
-                        ],
-                    ],
-                ],
+//                'ohdear:view-lighthouse' => [
+//                    'label' => \Craft::t('ohdear', 'View Lighthouse'),
+//                    'nested' => [
+//                        'ohdear:toggle-lighthouse-check' => [
+//                            'label' => \Craft::t('ohdear', 'Toggle lighthouse check'),
+//                        ],
+//                        'ohdear:request-lighthouse-check' => [
+//                            'label' => \Craft::t('ohdear', 'Request lighthouse check'),
+//                        ],
+//                    ],
+//                ],
                 'ohdear:view-application-health' => [
                     'label' => \Craft::t('ohdear', 'View application health'),
                     'nested' => [
