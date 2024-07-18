@@ -14,7 +14,6 @@ use OhDear\PhpSdk\Exceptions\UnauthorizedException;
 use webhubworks\ohdear\OhDear;
 use yii\web\BadRequestHttpException;
 use yii\web\Response;
-use function PHPUnit\Framework\matches;
 
 class ApiController extends Controller
 {
