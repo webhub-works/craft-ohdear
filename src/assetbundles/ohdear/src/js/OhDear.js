@@ -19,6 +19,7 @@ import CheckPermissions from "./CheckPermissions";
 Vue.component('card', require('./components/Card').default);
 Vue.component('overview', require('./components/pages/Overview').default);
 Vue.component('uptime', require('./components/pages/Uptime').default);
+Vue.component('lighthouse', require('./components/pages/Lighthouse').default);
 Vue.component('performance', require('./components/pages/Performance').default);
 Vue.component('performance-chart', require('./components/PerformanceChart').default);
 Vue.component('broken-links', require('./components/pages/BrokenLinks').default);

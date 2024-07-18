@@ -151,6 +151,11 @@ class OhDearService extends Component
         return $this->ohDearClient->certificateHealth($this->siteId);
     }
 
+    public function getLatestLighthouseReport()
+    {
+        return $this->ohDearClient->latestLighthouseReport($this->siteId);
+    }
+
     public function getApplicationHealthChecks(): array
     {
         return $this->ohDearClient->applicationHealthChecks($this->siteId);

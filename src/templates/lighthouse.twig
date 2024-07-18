@@ -1,0 +1,15 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{% extends '_layouts/cp' %}
+
+{% requirePermission 'ohdear:view-lighthouse' %}
+
+{% do view.registerAssetBundle('webhubworks\\ohdear\\assetbundles\\ohdear\\OhDearAsset') %}
+
+{% set title = 'Lighthouse'|t('ohdear') %}
+{% set selectedSubnavItem = 'lighthouse' %}
+
+{% block content %}
+    <div id="ohdear-app">
+        <lighthouse></lighthouse>
+    </div>
+{% endblock %}
