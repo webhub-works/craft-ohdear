@@ -46,6 +46,10 @@ export default {
         return Axios.get('/actions/ohdear/api/mixed-content')
             .catch(error => handleError(error));
     },
+    getLatestLighthouseReport: () => {
+        return Axios.get('/actions/ohdear/api/latest-lighthouse-report')
+            .catch(error => handleError(error));
+    },
     getCertificateHealth: () => {
         return Axios.get('/actions/ohdear/api/certificate-health')
             .catch(error => handleError(error));

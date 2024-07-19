@@ -38,6 +38,16 @@ export default {
                 bad: 'We found mixed content, your site is insecure. We last checked {:fromNow}.'
             }
         },
+        lighthouse: {
+            badge: {
+                good: 'Healthy',
+                bad: 'Not healthy'
+            },
+            body: {
+                good: 'Lighthouse did not report any issues. We last checked {:fromNow}.',
+                bad: 'Lighthouse reported issues. We last checked {:fromNow}.'
+            }
+        },
         certificate_health: {
             badge: {
                 good: 'Healthy',

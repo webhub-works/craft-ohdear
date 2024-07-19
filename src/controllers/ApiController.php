@@ -205,6 +205,23 @@ class ApiController extends Controller
     /**
      * @throws BadRequestHttpException
      */
+    public function actionLatestLighthouseReport(): Response
+    {
+        $this->requireAcceptsJson();
+        $this->requireLogin();
+
+        try {
+            return $this->asJson([
+                'latestLighthouseReport' => OhDear::$plugin->api->getLatestLighthouseReport(),
+            ]);
+        } catch (\Exception $e) {
+            return $this->handleError($e);
+        }
+    }
+
+    /**
+     * @throws BadRequestHttpException
+     */
     public function actionApplicationHealthCheckResults(): Response
     {
         $this->requireAcceptsJson();
