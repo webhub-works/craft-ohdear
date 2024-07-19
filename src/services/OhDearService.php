@@ -8,12 +8,16 @@ use craft\base\Component;
 use craft\base\ElementInterface;
 use craft\db\Query;
 use craft\db\Table;
+use craft\elements\Address;
 use craft\elements\Asset;
+use craft\elements\Category;
 use craft\elements\Entry;
 use craft\elements\GlobalSet;
-use craft\elements\MatrixBlock;
+use craft\elements\Tag;
+use craft\elements\User;
 use craft\errors\SiteNotFoundException;
 use craft\helpers\Search;
+use DateTimeInterface;
 use Exception;
 use OhDear\PhpSdk\OhDear as OhDearSdk;
 use OhDear\PhpSdk\Resources\BrokenLink;
@@ -216,13 +220,23 @@ class OhDearService extends Component
     private function transformElement(?ElementInterface $element): ?array
     {
         try {
+            if ($element instanceof Address) {
+                return [
+                    'id' => intval($element->id),
+                    'title' => $element->title,
+                    'status' => $element->status,
+                    'cpEditUrl' => $element->cpEditUrl,
+                    'dateUpdated' => $element->dateUpdated->format(DateTimeInterface::ATOM),
+                ];
+            }
+
             if ($element instanceof Entry) {
                 return [
                     'id' => intval($element->id),
                     'title' => $element->title,
                     'status' => $element->status,
                     'cpEditUrl' => $element->cpEditUrl,
-                    'dateUpdated' => $element->dateUpdated->format(DATE_ISO8601),
+                    'dateUpdated' => $element->dateUpdated->format(DateTimeInterface::ATOM),
                 ];
             }
 
@@ -232,17 +246,37 @@ class OhDearService extends Component
                     'title' => $element->name,
                     'status' => $element->status,
                     'cpEditUrl' => $element->cpEditUrl,
-                    'dateUpdated' => $element->dateUpdated->format(DATE_ISO8601),
+                    'dateUpdated' => $element->dateUpdated->format(DateTimeInterface::ATOM),
                 ];
             }
 
-            if ($element instanceof MatrixBlock) {
+            if ($element instanceof Category) {
                 return [
                     'id' => intval($element->id),
                     'title' => $element->owner->title ?? $element->owner->name ?? 'Element',
                     'status' => $element->status,
                     'cpEditUrl' => $element->owner->cpEditUrl ?? '#!',
-                    'dateUpdated' => $element->dateUpdated->format(DATE_ISO8601),
+                    'dateUpdated' => $element->dateUpdated->format(DateTimeInterface::ATOM),
+                ];
+            }
+
+            if ($element instanceof Tag) {
+                return [
+                    'id' => intval($element->id),
+                    'title' => $element->owner->title ?? $element->owner->name ?? 'Element',
+                    'status' => $element->status,
+                    'cpEditUrl' => $element->owner->cpEditUrl ?? '#!',
+                    'dateUpdated' => $element->dateUpdated->format(DateTimeInterface::ATOM),
+                ];
+            }
+
+            if ($element instanceof User) {
+                return [
+                    'id' => intval($element->id),
+                    'title' => $element->owner->title ?? $element->owner->name ?? 'Element',
+                    'status' => $element->status,
+                    'cpEditUrl' => $element->owner->cpEditUrl ?? '#!',
+                    'dateUpdated' => $element->dateUpdated->format(DateTimeInterface::ATOM),
                 ];
             }
 
@@ -252,7 +286,7 @@ class OhDearService extends Component
                     'title' => $element->owner->title ?? $element->owner->name ?? 'Element',
                     'status' => $element->status,
                     'cpEditUrl' => $element->cpEditUrl ?? '#!',
-                    'dateUpdated' => $element->dateUpdated->format(DATE_ISO8601),
+                    'dateUpdated' => $element->dateUpdated->format(DateTimeInterface::ATOM),
                 ];
             }
         } catch (Exception $exception) {

@@ -127,6 +127,7 @@ return [
     'Is not going to be revoked soon' => 'Wird nicht demnächst widerrufen',
     'We are collecting performance metrics every time we check your site uptime.' => 'Jedes Mal, wenn wir die Uptime Ihrer Seite checken, erfassen wir auch die Ladezeit.',
     'Performance' => 'Ladezeit',
+    'Element not found' => 'Element nicht gefunden',
     'This check works by letting your server respond with health check results as JSON. Read more in the docs to learn about setting up built-in and even custom Health Checks.' => 'Dieser Check funktioniert, indem der Server mit den Ergebnissen der Health-Checks als JSON antwortet. Weitere Infos zum Setup von vorgefertigten und auch eigenen Health-Checks gibt\'s in der Plugin-Dokumentation.',
     'Please provide a valid API token and site ID at first.' => 'Bitte geben Sie zuerst einen gültigen API-Token und eine Site-ID ein.',
     'The URL where Oh Dear can get the results of your health checks. Paste this URL into Oh Dear\'s {link}.' => 'Die URL, unter der Oh Dear die Ergebnisse der Health Checks finden kann. Fügen Sie die URL in Oh Dears {link} ein',

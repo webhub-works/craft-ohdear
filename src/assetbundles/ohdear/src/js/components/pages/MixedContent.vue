@@ -46,18 +46,23 @@
             <tbody>
             <tr v-for="mixedContent in mixedContentItems">
                 <td>
-                    <div v-if="mixedContent.element" class="element small hasstatus" :title="mixedContent.element.title">
-                        <span :class="`status ${mixedContent.element.status}`"></span>
-                        <div class="label">
-                            <span class="title"><a :href="mixedContent.element.cpEditUrl">{{mixedContent.element.title}}</a></span>
-                        </div>
+
+                    <div class="chip-content" v-if="mixedContent.element" :title="mixedContent.element.title">
+                      <span class="status" :class="mixedContent.element.status"></span>
+                      <craft-element-label class="label">
+                        <a class="label-link" :href="mixedContent.element.cpEditUrl"><span>{{mixedContent.element.title}}</span></a>
+                      </craft-element-label>
+                      <div class="chip-actions"></div>
                     </div>
-                    <div v-else class="element small hasstatus">
-                        <span class="status disabled"/>
-                        <div class="label">
-                            <span class="title">Not found</span>
-                        </div>
+
+                    <div class="chip-content" v-if="!mixedContent.element">
+                      <span class="status disabled"></span>
+                      <craft-element-label class="label">
+                        <span>{{ $t('Element not found') }}</span>
+                      </craft-element-label>
+                      <div class="chip-actions"></div>
                     </div>
+
                 </td>
                 <td>
                     <a :href="mixedContent.mixedContentUrl" :title="mixedContent.mixedContentUrl" target="_blank">{{ mixedContent.shortMixedContentUrl }}</a>
