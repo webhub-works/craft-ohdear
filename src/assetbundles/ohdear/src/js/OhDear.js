@@ -32,6 +32,7 @@ Vue.component('check-badge', require('./components/CheckBadge').default);
 Vue.component('check-body', require('./components/CheckBody').default);
 Vue.component('loader', require('./components/Loader').default);
 Vue.component('info-icon', require('./components/InfoIcon').default);
+Vue.component('status-icon', require('./components/StatusIcon').default);
 
 Vue.directive('tooltip', VTooltip)
 

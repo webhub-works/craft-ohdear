@@ -28,4 +28,8 @@ return [
     'Broken Links' => 'Broken Links',
     'Mixed Content' => 'Mixed Content',
     'Certificate Health' => 'Certificate Health',
+    'performanceScore' => 'Performance',
+    'accessibilityScore' => 'Accessibility',
+    'bestPracticesScore' => 'Best Practices',
+    'seoScore' => 'SEO',
 ];

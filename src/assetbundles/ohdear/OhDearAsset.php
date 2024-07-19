@@ -54,14 +54,15 @@ class OhDearAsset extends AssetBundle
      */
     public static function registerLangFile()
     {
-        $currentLanguage = Craft::$app->language;
+        $currentLocaleCode = Craft::$app->locale->getLanguageID();
+
 
         $js = <<<JS
 window.OhDear = window.OhDear || {};
 window.OhDear.translations = window.OhDear.translations || {};
 JS;
 
-        $path = rtrim(Yii::getAlias("@webhubworks/ohdear/translations/{$currentLanguage}/ohdear.php"));
+        $path = rtrim(Yii::getAlias("@webhubworks/ohdear/translations/{$currentLocaleCode}/ohdear.php"));
 
         if (file_exists($path)) {
             $craftJson = Json::encode(require $path, JSON_UNESCAPED_UNICODE);

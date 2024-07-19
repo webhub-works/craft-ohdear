@@ -234,6 +234,11 @@ JS;
                 'toggle' => $currentUser->can('ohdear:toggle-mixed-content-check'),
                 'request' => $currentUser->can('ohdear:request-mixed-content-check'),
             ],
+            'lighthouse' => [
+                'view' => $currentUser->can('ohdear:view-lighthouse'),
+                'toggle' => $currentUser->can('ohdear:toggle-lighthouse-check'),
+                'request' => $currentUser->can('ohdear:request-lighthouse-check'),
+            ],
             'certificate_health' => [
                 'view' => $currentUser->can('ohdear:view-certificate-health'),
                 'toggle' => $currentUser->can('ohdear:toggle-certificate-health-check'),

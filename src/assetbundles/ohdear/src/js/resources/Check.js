@@ -7,6 +7,7 @@ export const VALID_TYPES = [
     'broken_links',
     'mixed_content',
     'certificate_health',
+    'lighthouse',
     // 'certificate_transparency',
     'performance',
     // 'cron',
@@ -57,6 +58,8 @@ export default class Check {
                 return `${cpTriggerPrefix}/ohdear/broken-links`;
             case 'mixed_content':
                 return `${cpTriggerPrefix}/ohdear/mixed-content`;
+            case 'lighthouse':
+                return `${cpTriggerPrefix}/ohdear/lighthouse`;
             case 'certificate_health':
                 return `${cpTriggerPrefix}/ohdear/certificate-health`;
             case 'certificate_transparency':

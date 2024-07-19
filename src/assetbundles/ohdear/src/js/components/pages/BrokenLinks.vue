@@ -7,7 +7,7 @@
             <loader/>
         </div>
 
-        <table class="data collapsible" v-if="!loadingSite">
+        <table class="data" v-if="!loadingSite">
             <tbody>
             <tr>
                 <th class="light">{{ $t('Status') }}</th>
@@ -17,7 +17,7 @@
             </tr>
             <tr>
                 <th class="light">{{ $t('Last run') }}</th>
-                <td>{{ lastRun }}</td>
+                <td class="xs:oh-whitespace-nowrap">{{ lastRun }}</td>
             </tr>
             </tbody>
         </table>
@@ -48,18 +48,23 @@
             <tbody>
             <tr v-for="brokenLink in brokenLinks">
                 <td>
-                    <div v-if="brokenLink.element" class="element small hasstatus" :title="brokenLink.element.title">
-                        <span :class="`status ${brokenLink.element.status}`"/>
-                        <div class="label">
-                            <span class="title"><a :href="brokenLink.element.cpEditUrl">{{brokenLink.element.title}}</a></span>
-                        </div>
+
+                    <div class="chip-content" v-if="brokenLink.element" :title="brokenLink.element.title">
+                        <span class="status" :class="brokenLink.element.status"></span>
+                        <craft-element-label class="label">
+                            <a class="label-link" :href="brokenLink.element.cpEditUrl"><span>{{brokenLink.element.title}}</span></a>
+                        </craft-element-label>
+                        <div class="chip-actions"></div>
                     </div>
-                    <div v-else class="element small hasstatus">
-                        <span class="status disabled"/>
-                        <div class="label">
-                            <span class="title">{{ $t('Not found') }}</span>
-                        </div>
+
+                    <div class="chip-content" v-if="!brokenLink.element">
+                        <span class="status disabled"></span>
+                        <craft-element-label class="label">
+                            <span>{{ $t('Element not found') }}</span>
+                        </craft-element-label>
+                        <div class="chip-actions"></div>
                     </div>
+
                 </td>
                 <td>
                     <a :href="brokenLink.crawledUrl" :title="brokenLink.crawledUrl" target="_blank">{{ brokenLink.shortCrawledUrl }}</a>

@@ -8,7 +8,7 @@
         </div>
 
         <div v-if="certificateHealth">
-            <table class="data collapsible">
+            <table class="data">
                 <tbody>
                 <tr v-for="certificateCheck in certificateHealth.certificateChecks">
                     <th class="light">{{ $t(certificateCheck.label) }}</th>
@@ -37,7 +37,7 @@
         </div>
 
         <div v-if="certificateHealth">
-            <table class="data collapsible">
+            <table class="data">
                 <tbody>
                 <tr>
                     <th class="light">{{ $t('Issuer') }}</th>
@@ -62,7 +62,7 @@
         </div>
 
         <div v-if="certificateHealth">
-            <table class="data collapsible">
+            <table class="data">
                 <tbody>
                 <tr v-for="(issuer, index) in certificateHealth.certificateChainIssuers">
                     <th class="light">#{{ index + 1 }}</th>
