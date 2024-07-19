@@ -7,7 +7,7 @@ use craft\events\RegisterUrlRulesEvent;
 
 class CpRoutes
 {
-    public static function handle(RegisterUrlRulesEvent $event)
+    public static function handle(RegisterUrlRulesEvent $event): void
     {
         /** @var User|null $currentUser */
         $currentUser = \Craft::$app->getUser()->getIdentity();
@@ -31,6 +31,9 @@ class CpRoutes
         }
         if ($currentUser->can('ohdear:view-certificate-health')) {
             $event->rules['ohdear/certificate-health'] = ['template' => 'ohdear/certificate-health'];
+        }
+        if ($currentUser->can('ohdear:view-lighthouse')) {
+            $event->rules['ohdear/lighthouse'] = ['template' => 'ohdear/lighthouse'];
         }
         if ($currentUser->can('ohdear:view-application-health')) {
             $event->rules['ohdear/application-health'] = ['template' => 'ohdear/application-health'];

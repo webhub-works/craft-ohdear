@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
     purge: [
         './src/templates/**/*.twig',
@@ -6,6 +8,10 @@ module.exports = {
     ],
     prefix: 'oh-',
     theme: {
+        screens: {
+            'xs': '475px',
+            ...defaultTheme.screens,
+        },
         extend: {
             padding: {
                 '0.5': '0.125rem',

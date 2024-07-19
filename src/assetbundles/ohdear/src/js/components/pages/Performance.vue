@@ -7,7 +7,7 @@
             <loader/>
         </div>
 
-        <table v-if="!loadingSite" class="data collapsible">
+        <table v-if="!loadingSite" class="data">
             <tbody>
             <tr>
                 <th class="light">{{ $t('Status') }}</th>
@@ -17,7 +17,7 @@
             </tr>
             <tr>
                 <th class="light">{{ $t('Last run') }}</th>
-                <td>{{ lastRun }}</td>
+                <td class="xs:oh-whitespace-nowrap">{{ lastRun }}</td>
             </tr>
             </tbody>
         </table>

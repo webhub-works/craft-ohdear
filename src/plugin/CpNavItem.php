@@ -67,12 +67,12 @@ class CpNavItem
             }
         }
 
-//        if ($currentUser->can('ohdear:view-lighthouse')) {
-//            $cpNavItem['subnav']['lighthouse'] = [
-//                'url' => 'ohdear/lighthouse',
-//                'label' => \Craft::t('ohdear', 'Lighthouse'),
-//            ];
-//        }
+        if ($currentUser->can('ohdear:view-lighthouse')) {
+            $cpNavItem['subnav']['lighthouse'] = [
+                'url' => 'ohdear/lighthouse',
+                'label' => \Craft::t('ohdear', 'Lighthouse'),
+            ];
+        }
 
         if ($currentUser->can('ohdear:view-certificate-health')) {
             $cpNavItem['subnav']['certificate-health'] = [

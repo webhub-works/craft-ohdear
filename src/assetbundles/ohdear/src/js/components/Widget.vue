@@ -26,6 +26,12 @@
                     <check-badge :check="mixedContentCheck"/>
                 </dl>
             </dl>
+          <dl v-if="enabledChecks.includes('lighthouse') && !loadingSite" class="ohdear-widget__stat">
+            <dt>{{ $t(lighthouseCheck.label) }}</dt>
+            <dl>
+              <check-badge :check="lighthouseCheck"/>
+            </dl>
+          </dl>
             <dl v-if="enabledChecks.includes('certificate_health') && !loadingSite" class="ohdear-widget__stat">
                 <dt>{{ $t(certificateHealthCheck.label) }}</dt>
                 <dl>
@@ -108,6 +114,9 @@ export default {
         mixedContentCheck() {
             return this.getCheckByType('mixed_content');
         },
+        lighthouseCheck() {
+          return this.getCheckByType('lighthouse');
+        },
         certificateHealthCheck() {
             return this.getCheckByType('certificate_health');
         },
@@ -119,7 +128,7 @@ export default {
         },
         enabledChecks() {
             let enabledChecks = [];
-            ['uptime', 'broken_links', 'mixed_content', 'certificate_health', 'application_health', 'performance'].forEach(checkType => {
+            ['uptime', 'broken_links', 'mixed_content', 'lighthouse', 'certificate_health', 'application_health', 'performance'].forEach(checkType => {
                 if (this.checks.includes(checkType)) {
                     enabledChecks.push(checkType);
                 }
