@@ -46,7 +46,7 @@ Currently there is no multi-site support. You can only connect to a single Oh De
 
 ## Oh Dear Roadmap
 - Application Health Checks for site security
-- More Checks like Lighthouse etc.
+- More Checks like Sitemap, DNS, Scheduled Tasks etc.
 
 ## Questions and answers
 
