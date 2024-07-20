@@ -48,4 +48,9 @@ trait MakesChecks
     {
         return CveCheck::new();
     }
+
+    public static function abandonedPackages(): AbandonedPackagesCheck
+    {
+        return AbandonedPackagesCheck::new();
+    }
 }

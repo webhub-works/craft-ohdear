@@ -17,9 +17,8 @@ class CveCheck extends Check
     {
         $auditResult = $this->getAuditResult();
         $advisoriesPerPackage = $auditResult['advisories'] ?? [];
-        $abandonedPackages = $auditResult['abandoned'] ?? [];
 
-        $advisoriesPerPackage = collect($advisoriesPerPackage)->map(function ($advisories, $packageName) {
+        $advisoriesPerPackage = collect($advisoriesPerPackage)->map(function (array $advisories, string $packageName) {
 
             $whyResult = $this->getWhyResult($packageName);
             $packageInformation = $this->getPackageInformation($packageName);
