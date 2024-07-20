@@ -34,7 +34,7 @@ class FailedJobsCheck extends Check
 
         $result = (new CheckResult(
             name: 'FailedJobs',
-            label: 'Failed jobs',
+            label: 'Failed Jobs',
             shortSummary: $failedJobCount,
             meta: [
                 'failedJobCount' => $failedJobCount,

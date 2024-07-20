@@ -25,8 +25,8 @@ class ServerRequirementsCheck extends Check
 
         $result = (new CheckResult(
             name: 'Requirements',
-            label: 'Server requirements',
-            shortSummary: $this->summary['total'] - $this->summary['errors'] - $this->summary['warnings'] . ' of ' . $this->summary['total'] . ' requirements met',
+            label: 'Server Requirements',
+            shortSummary: $this->summary['total'] - $this->summary['errors'] - $this->summary['warnings'] . ' of ' . $this->summary['total'] . ' requirements met.',
             meta: [
                 'requirements' => array_column($this->requirements, 'name'),
             ],

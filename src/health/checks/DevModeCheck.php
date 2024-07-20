@@ -32,7 +32,7 @@ class DevModeCheck extends Check
         $result = (new CheckResult(
             name: 'DevMode',
             label: 'Dev Mode',
-            shortSummary: $this->convertToWord($actual),
+            shortSummary: $this->convertToShortSummary($actual),
             meta: [
                 'actual' => $actual,
                 'expected' => $this->expected,
@@ -49,6 +49,11 @@ class DevModeCheck extends Check
 
     protected function convertToWord(bool $boolean): string
     {
-        return $boolean ? 'Dev Mode is on' : 'Dev Mode is off';
+        return $boolean ? 'On' : 'Off';
+    }
+
+    protected function convertToShortSummary(bool $boolean): string
+    {
+        return $boolean ? 'Dev Mode is on.' : 'Dev Mode is off.';
     }
 }

@@ -21,7 +21,7 @@ class EnvironmentCheck extends Check
 
         $result = (new CheckResult(
             name: 'Environment',
-            label: 'App environment',
+            label: 'App Environment',
             shortSummary: $actualEnvironment,
             meta: [
                 'actual' => $actualEnvironment,
@@ -31,7 +31,7 @@ class EnvironmentCheck extends Check
 
         if ($this->expectedEnvironment !== $actualEnvironment) {
             return $result->status(CheckResult::STATUS_FAILED)
-                ->notificationMessage("The environment was expected to be `{$this->expectedEnvironment}`, but actually was `{$actualEnvironment}`");
+                ->notificationMessage("The environment was expected to be `{$this->expectedEnvironment}`, but actually was `{$actualEnvironment}`.");
         }
 
         return $result->status(CheckResult::STATUS_OK)

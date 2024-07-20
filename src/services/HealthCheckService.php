@@ -17,6 +17,10 @@ class HealthCheckService extends Component
     /** @var array<int, string> */
     public array $inlineStylesheets = [];
 
+    /**
+     * @throws InvalidCheck
+     * @throws DuplicateCheckNamesFound
+     */
     public function __construct($config = [])
     {
         parent::__construct($config);
@@ -41,7 +45,12 @@ class HealthCheckService extends Component
         return (new CheckResults(null, $checkResults));
     }
 
-    /** @param array<int, Check> $checks */
+    /**
+     * @param array<int, Check> $checks
+     * @return HealthCheckService
+     * @throws DuplicateCheckNamesFound
+     * @throws InvalidCheck
+     */
     protected function addChecks(array $checks): self
     {
         $this->ensureCheckInstances($checks);
@@ -59,7 +68,10 @@ class HealthCheckService extends Component
         return $this->checks;
     }
 
-    /** @param array<int,mixed> $checks */
+    /**
+     * @param array<int,mixed> $checks
+     * @throws InvalidCheck
+     */
     protected function ensureCheckInstances(array $checks): void
     {
         foreach ($checks as $check) {
@@ -69,6 +81,10 @@ class HealthCheckService extends Component
         }
     }
 
+    /**
+     * @return void
+     * @throws DuplicateCheckNamesFound
+     */
     protected function guardAgainstDuplicateCheckNames(): void
     {
         $checkNames = array_map(fn(Check $check) => $check->getName(), $this->checks);

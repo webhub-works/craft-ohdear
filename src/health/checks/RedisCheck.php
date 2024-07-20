@@ -4,7 +4,6 @@ namespace webhubworks\ohdear\health\checks;
 
 use OhDear\HealthCheckResults\CheckResult;
 use yii\base\InvalidConfigException;
-use yii\redis\Connection;
 
 class RedisCheck extends Check
 {
@@ -16,7 +15,6 @@ class RedisCheck extends Check
         ));
 
         try {
-            /** @var Connection $redis */
             $redis = \Yii::$app->get('redis');
             $connected = $redis->ping();
 

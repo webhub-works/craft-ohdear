@@ -33,14 +33,14 @@ class UsedDiskSpaceCheck extends Check
     {
         $result = new CheckResult(
             name: 'UsedDiskSpace',
-            label: 'Used disk space',
+            label: 'Used Disk Space',
         );
 
         try {
             $diskSpaceUsedPercentage = $this->getDiskUsagePercentage();
         } catch (\Throwable $e) {
             return $result
-                ->shortSummary("Cannot evaluate")
+                ->shortSummary("Cannot evaluate.")
                 ->meta(['error' => $e->getMessage()])
                 ->status(CheckResult::STATUS_CRASHED)
                 ->notificationMessage("Error evaluating disk space on server.");
