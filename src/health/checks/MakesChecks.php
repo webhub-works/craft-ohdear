@@ -43,4 +43,9 @@ trait MakesChecks
     {
         return RedisCheck::new();
     }
+
+    public static function cve(): CveCheck
+    {
+        return CveCheck::new();
+    }
 }

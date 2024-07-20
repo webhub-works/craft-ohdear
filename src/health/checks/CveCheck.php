@@ -4,11 +4,15 @@ namespace webhubworks\ohdear\health\checks;
 
 use Illuminate\Support\Collection;
 use OhDear\HealthCheckResults\CheckResult;
+use yii\base\Exception;
 
 class CveCheck extends Check
 {
     use RunsComposer;
 
+    /**
+     * @throws Exception
+     */
     public function run(): CheckResult
     {
         $auditResult = $this->getAuditResult();
