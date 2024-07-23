@@ -1,4 +1,4 @@
-# Oh Dear plugin for Craft CMS 4.x
+# Oh Dear plugin for Craft CMS 5.x
 
 Integrate Oh Dear into Craft CMS.
 
@@ -6,7 +6,7 @@ Integrate Oh Dear into Craft CMS.
 
 ## Requirements
 
-This plugin requires **Craft CMS 4.0.0** or later and **PHP 8.0** or later.
+This plugin requires **Craft CMS 5.0.0** or later and **PHP 8.2** or later.
 
 You'll also have to provide an Oh Dear API key.
 
