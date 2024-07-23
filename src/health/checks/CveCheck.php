@@ -42,7 +42,8 @@ class CveCheck extends Check
         return (new CheckResult(
             name: 'SecurityVulnerabilities',
             label: 'Security Vulnerabilities',
-            shortSummary: $this->getShortSummary($advisoriesPerPackage),
+            notificationMessage: $this->getNotificationMessage($advisoriesPerPackage),
+            shortSummary: $advisoriesPerPackage->isEmpty() ? 'Secure' : 'Insecure',
             status: $this->getCheckStatus($advisoriesPerPackage),
             meta: $advisoriesPerPackage->mapWithKeys(fn ($package, $packageName) => [
                 $packageName => $this->getMetaValueForPackage($package),
@@ -63,7 +64,7 @@ class CveCheck extends Check
         return count($package['advisories']) . ' security vulnerabilities';
     }
 
-    private function getShortSummary(Collection $advisoriesPerPackage): string
+    private function getNotificationMessage(Collection $advisoriesPerPackage): string
     {
         if ($advisoriesPerPackage->isEmpty()) {
             return 'No security vulnerabilities found.';

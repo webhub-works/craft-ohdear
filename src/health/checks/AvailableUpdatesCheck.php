@@ -39,7 +39,7 @@ class AvailableUpdatesCheck extends Check
             meta: [
                 'threshold' => $this->warningThreshold,
                 'totalUpdates' => $totalUpdates,
-                'hasCriticalUpdate' => $hasCritical,
+                'hasCriticalUpdate' => $hasCritical ? 'Yes' : 'No',
             ],
         ));
 

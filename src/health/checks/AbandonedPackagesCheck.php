@@ -41,7 +41,8 @@ class AbandonedPackagesCheck extends Check
         return (new CheckResult(
             name: 'AbandonedPackages',
             label: 'Abandoned Packages',
-            shortSummary: $this->getShortSummary($abandonedPackages),
+            notificationMessage: $this->getNotificationMessage($abandonedPackages),
+            shortSummary: $abandonedPackages->isEmpty() ? 'All maintained' : 'Some abandoned',
             status: $this->getCheckStatus($abandonedPackages),
             meta: $this->getMetaValueForPackages($abandonedPackages),
         ));
@@ -56,7 +57,7 @@ class AbandonedPackagesCheck extends Check
         ])->toArray();
     }
 
-    private function getShortSummary(Collection $abandonedPackages): string
+    private function getNotificationMessage(Collection $abandonedPackages): string
     {
         if ($abandonedPackages->isEmpty()) {
             return 'No abandoned packages found.';
