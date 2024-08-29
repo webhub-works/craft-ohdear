@@ -57,8 +57,9 @@ class Settings extends Model
      */
     public function getSelectedSiteId(): string
     {
-        return App::parseEnv($this->selectedSiteId);
+        return $this->selectedSiteId;
     }
+
 
     /**
      * Parse the API token if it is an env variable, otherwise
@@ -66,7 +67,7 @@ class Settings extends Model
      */
     public function getApiToken(): string
     {
-        return App::parseEnv($this->apiToken);
+        return $this->apiToken;
     }
 
     public function getHealthReportUrl(string $healthReportUri): ?string
