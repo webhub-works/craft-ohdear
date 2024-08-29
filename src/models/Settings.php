@@ -51,20 +51,11 @@ class Settings extends Model
         return ! empty($this->apiToken) && ! empty($this->selectedSiteId);
     }
 
-    /**
-     * Parse the site ID if it is an env variable, otherwise
-     * just return the value.
-     */
     public function getSelectedSiteId(): string
     {
         return $this->selectedSiteId;
     }
 
-
-    /**
-     * Parse the API token if it is an env variable, otherwise
-     * just return the value.
-     */
     public function getApiToken(): string
     {
         return $this->apiToken;
