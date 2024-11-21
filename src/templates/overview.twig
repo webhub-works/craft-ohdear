@@ -12,7 +12,7 @@
 {% set isPreCraft34 = craft.app.plugins.plugin('ohdear').isPreCraft34 %}
 
 {# TODO: Can this be done in the plugin base class routing? #}
-{% if not craft.app.plugins.plugin('ohdear').settings.isValid() %}
+{% if not craft.app.plugins.plugin('ohdear').settings.hasApiCredentials() %}
     {% redirect '/' ~ craft.app.config.general.cpTrigger ~ '/settings/plugins/ohdear' %}
 {% endif %}
 
