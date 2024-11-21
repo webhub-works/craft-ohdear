@@ -8,7 +8,7 @@ use webhubworks\ohdear\services\BadgeCountService;
 
 class CpNavItem
 {
-    public static function get(array &$cpNavItem, Settings $settings, BadgeCountService $badgeCountService)
+    public static function get(array &$cpNavItem, Settings $settings, BadgeCountService $badgeCountService): ?array
     {
         if ($settings->showNavBadges) {
             $cpNavItem['badgeCount'] = $badgeCountService->getTotalCount();
@@ -25,7 +25,7 @@ class CpNavItem
             return null;
         }
 
-        if (! $settings->isValid()) {
+        if (! $settings->hasApiCredentials()) {
             return $cpNavItem;
         }
 

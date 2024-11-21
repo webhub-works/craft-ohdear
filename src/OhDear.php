@@ -158,15 +158,17 @@ class OhDear extends Plugin
 
     private function registerWidgets(): void
     {
-        if ($this->settings->isValid()) {
-            Event::on(
-                Dashboard::class,
-                Dashboard::EVENT_REGISTER_WIDGET_TYPES,
-                function (RegisterComponentTypesEvent $event) {
-                    $event->types[] = OhDearWidget::class;
-                }
-            );
+        if (! $this->settings->validate()) {
+            return;
         }
+
+        Event::on(
+            Dashboard::class,
+            Dashboard::EVENT_REGISTER_WIDGET_TYPES,
+            function (RegisterComponentTypesEvent $event) {
+                $event->types[] = OhDearWidget::class;
+            }
+        );
     }
 
     private function registerUtilityTypes(): void
