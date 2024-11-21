@@ -26,7 +26,7 @@
 
 return [
 //    'apiToken' => null,
-//    'siteId' => null,
+//    'selectedSiteId' => null,
 //    'healthCheckSecret' => null,
 //    'showNavBadges' => false,
 //    'healthChecks' => [
