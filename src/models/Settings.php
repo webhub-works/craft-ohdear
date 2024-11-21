@@ -51,22 +51,14 @@ class Settings extends Model
         return ! empty($this->apiToken) && ! empty($this->selectedSiteId);
     }
 
-    /**
-     * Parse the site ID if it is an env variable, otherwise
-     * just return the value.
-     */
     public function getSelectedSiteId(): string
     {
-        return App::parseEnv($this->selectedSiteId);
+        return $this->selectedSiteId;
     }
 
-    /**
-     * Parse the API token if it is an env variable, otherwise
-     * just return the value.
-     */
     public function getApiToken(): string
     {
-        return App::parseEnv($this->apiToken);
+        return $this->apiToken;
     }
 
     public function getHealthReportUrl(string $healthReportUri): ?string

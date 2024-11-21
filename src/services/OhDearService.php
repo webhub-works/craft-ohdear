@@ -13,6 +13,7 @@ use craft\elements\Entry;
 use craft\elements\GlobalSet;
 use craft\elements\MatrixBlock;
 use craft\errors\SiteNotFoundException;
+use craft\helpers\App;
 use craft\helpers\Search;
 use Exception;
 use OhDear\PhpSdk\OhDear as OhDearSdk;
@@ -46,8 +47,8 @@ class OhDearService extends Component
     {
         parent::__construct($config);
 
-        $this->siteId = intval(OhDear::$plugin->getSettings()->getSelectedSiteId());
-        $this->apiToken = OhDear::$plugin->getSettings()->getApiToken();
+        $this->siteId = intval(App::parseEnv(OhDear::$plugin->getSettings()->getSelectedSiteId()));
+        $this->apiToken = App::parseEnv(OhDear::$plugin->getSettings()->getApiToken());
 
         $this->ohDearClient = new OhDearSdk($this->apiToken);
     }
