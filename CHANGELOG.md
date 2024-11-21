@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 5.2.1 - 2024-11-21
+
+### Changed
+- Moved plugin registrations depending on Craft's initialization into onInit() method
+
 ## 5.2.0 - 2024-07-23
 
 ### Added

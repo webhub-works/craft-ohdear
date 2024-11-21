@@ -97,19 +97,18 @@ class OhDear extends Plugin
         ]);
 
         $this->registerPermissions();
-
-        if (Craft::$app->request->isCpRequest && Craft::$app->user->getIdentity()) {
-            OhDearAsset::registerLangFile();
-            $this->registerFrontendPermissions();
-            $this->registerWidgets();
-            $this->registerUtilityTypes();
-        }
-
+        $this->registerUtilityTypes();
+        $this->registerWidgets();
         $this->registerUrlRules();
-
         $this->registerCpRoutes();
-
         $this->registerEntryEditRedirectOverride();
+
+        Craft::$app->onInit(function () {
+            if (Craft::$app->request->isCpRequest && Craft::$app->user->getIdentity()) {
+                $this->registerFrontendPermissions();
+                OhDearAsset::registerLangFile();
+            }
+        });
     }
 
     protected function createSettingsModel(): ?Model
